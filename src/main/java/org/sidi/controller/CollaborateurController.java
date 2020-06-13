@@ -1,6 +1,6 @@
 package org.sidi.controller;
 
-import org.sidi.entities.Projet;
+import org.sidi.entities.Collaborateur;
 import org.sidi.service.IService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -14,18 +14,19 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/projects")
+@RequestMapping("/collaborateurs")
 @CrossOrigin("*")
-public class ProjetController implements Resource<Projet>{
+public class CollaborateurController implements Resource<Collaborateur>{
     @Autowired
-    private IService<Projet> iService;
+    private IService<Collaborateur> iService;
+
     @Override
-    public ResponseEntity<Page<Projet>> findAll(Pageable pageable, String searchText) {
+    public ResponseEntity<Page<Collaborateur>> findAll(Pageable pageable, String searchText) {
         return new ResponseEntity<>(iService.findAll(pageable, searchText), HttpStatus.OK);
     }
 
     @Override
-    public ResponseEntity<Page<Projet>> findAll(int pageNumber, int pageSize, String sortBy, String sortDir) {
+    public ResponseEntity<Page<Collaborateur>> findAll(int pageNumber, int pageSize, String sortBy, String sortDir) {
         return new ResponseEntity<>(iService.findAll(
                 PageRequest.of(
                         pageNumber, pageSize,
@@ -35,18 +36,18 @@ public class ProjetController implements Resource<Projet>{
     }
 
     @Override
-    public ResponseEntity<Projet> findById(Long id) {
+    public ResponseEntity<Collaborateur> findById(Long id) {
         return new ResponseEntity<>(iService.findById(id), HttpStatus.OK);
     }
 
     @Override
-    public ResponseEntity<Projet> save(Projet projet) {
-        return new ResponseEntity<>(iService.saveOrUpdate(projet), HttpStatus.CREATED);
+    public ResponseEntity<Collaborateur> save(Collaborateur collaborateur) {
+        return new ResponseEntity<>(iService.saveOrUpdate(collaborateur), HttpStatus.CREATED);
     }
 
     @Override
-    public ResponseEntity<Projet> update(Projet projet) {
-        return new ResponseEntity<>(iService.saveOrUpdate(projet), HttpStatus.OK);
+    public ResponseEntity<Collaborateur> update(Collaborateur collaborateur) {
+        return new ResponseEntity<>(iService.saveOrUpdate(collaborateur), HttpStatus.OK);
     }
 
     @Override

@@ -40,7 +40,7 @@ public class ProjetServiceImpl implements IService<Projet> {
         JSONObject jsonObject = new JSONObject();
         try {
             projetRepository.deleteById(id);
-            jsonObject.put("message", "Book deleted successfully");
+            jsonObject.put("message", "Project deleted successfully");
         } catch (JSONException e) {
             e.printStackTrace();
         }

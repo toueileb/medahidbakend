@@ -1,6 +1,6 @@
 package org.sidi.controller;
 
-import org.sidi.entities.Projet;
+import org.sidi.entities.Tache;
 import org.sidi.service.IService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -14,18 +14,19 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/projects")
+@RequestMapping("/taches")
 @CrossOrigin("*")
-public class ProjetController implements Resource<Projet>{
+public class TacheController implements Resource<Tache>{
+
     @Autowired
-    private IService<Projet> iService;
+    private IService<Tache> iService;
     @Override
-    public ResponseEntity<Page<Projet>> findAll(Pageable pageable, String searchText) {
+    public ResponseEntity<Page<Tache>> findAll(Pageable pageable, String searchText) {
         return new ResponseEntity<>(iService.findAll(pageable, searchText), HttpStatus.OK);
     }
 
     @Override
-    public ResponseEntity<Page<Projet>> findAll(int pageNumber, int pageSize, String sortBy, String sortDir) {
+    public ResponseEntity<Page<Tache>> findAll(int pageNumber, int pageSize, String sortBy, String sortDir) {
         return new ResponseEntity<>(iService.findAll(
                 PageRequest.of(
                         pageNumber, pageSize,
@@ -35,18 +36,18 @@ public class ProjetController implements Resource<Projet>{
     }
 
     @Override
-    public ResponseEntity<Projet> findById(Long id) {
+    public ResponseEntity<Tache> findById(Long id) {
         return new ResponseEntity<>(iService.findById(id), HttpStatus.OK);
     }
 
     @Override
-    public ResponseEntity<Projet> save(Projet projet) {
-        return new ResponseEntity<>(iService.saveOrUpdate(projet), HttpStatus.CREATED);
+    public ResponseEntity<Tache> save(Tache tache) {
+        return new ResponseEntity<>(iService.saveOrUpdate(tache), HttpStatus.CREATED);
     }
 
     @Override
-    public ResponseEntity<Projet> update(Projet projet) {
-        return new ResponseEntity<>(iService.saveOrUpdate(projet), HttpStatus.OK);
+    public ResponseEntity<Tache> update(Tache tache) {
+        return new ResponseEntity<>(iService.saveOrUpdate(tache), HttpStatus.OK);
     }
 
     @Override
