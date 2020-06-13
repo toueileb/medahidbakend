@@ -1,6 +1,7 @@
 package org.sidi.entities;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -25,6 +26,7 @@ public class Projet implements Serializable {
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     private Date dateFin;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "projet", cascade = CascadeType.ALL)
     private List<Tache> taches;
 

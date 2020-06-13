@@ -1,6 +1,7 @@
 package org.sidi.entities;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -26,6 +27,7 @@ public class Tache implements Serializable {
     @OneToMany(mappedBy = "tache")
     private List<Collaborateur> collaborateurs;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "tache")
     private List<Competence> competences;
 
